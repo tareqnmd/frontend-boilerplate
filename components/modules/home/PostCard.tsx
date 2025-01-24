@@ -4,14 +4,13 @@ import PostCardTitle from './PostCardTitle';
 
 const PostCard = ({ post }: { post: PostType }) => {
 	return (
-		<div
-			key={post.id}
-			className="post-card bg-white shadow-md rounded-lg p-4 max-w-sm"
-		>
-			<PostCardTitle title={post.title} />
-			<p className="post-body text-gray-600 mt-2">
-				{showMinimumDescription(post.body)}
-			</p>
+		<div className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg">
+			<div className="p-4">
+				<PostCardTitle title={post.title} />
+				<p className="text-slate-600 leading-normal font-light mt-4">
+					{showMinimumDescription(post.body)}
+				</p>
+			</div>
 		</div>
 	);
 };

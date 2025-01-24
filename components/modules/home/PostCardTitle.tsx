@@ -16,7 +16,9 @@ const PostCardTitle = ({ title }: { title: string }) => {
 
 	return (
 		<div className="post-title truncate flex justify-between gap-4">
-			<h1 className="truncate text-lg font-bold text-gray-800">{title}</h1>
+			<h5 className="mb-2 text-slate-800 text-xl font-semibold truncate">
+				{title}
+			</h5>
 			<button
 				onClick={copy}
 				className="bg-gray-600 rounded-md text-white px-2 py-1"
