@@ -3,6 +3,7 @@ import { loginFormItems } from '@/lib/helper/auth/form-items';
 import { loginSchema } from '@/lib/helper/auth/schema';
 import { signIn } from '@/lib/helper/auth/service';
 import { LoginPayloadSchemaType } from '@/lib/helper/auth/type';
+import { Routes } from '@/lib/utils/routes/enum';
 import { FormItemType } from '@/lib/utils/shared/type';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
@@ -34,48 +35,55 @@ const Signin = () => {
 
 	return (
 		<AuthFormWrapper>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className="flex flex-col gap-4">
-					{loginFormItems.map((item: FormItemType) => (
-						<div key={item.name}>
-							<label
-								className="block text-gray-700 text-sm font-semibold mb-2"
-								htmlFor={item.name}
-							>
-								{item.label}
-							</label>
-							<input
-								{...register(item.name as keyof typeof register)}
-								className={`shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 ${
-									errors[item.name as keyof typeof errors]
-										? 'border-red-500'
-										: 'border-gray-300'
-								}`}
-								id={item.name}
-								type={item.type}
-								placeholder={item.label}
-							/>
-							{errors[item.name as keyof typeof errors] && (
-								<p className="text-red-500 text-xs italic">
-									{errors[item.name as keyof typeof errors]?.message}
-								</p>
-							)}
-						</div>
-					))}
-					<div className="flex items-center justify-between">
-						<button
-							className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-							type="submit"
+			<form
+				className="space-y-6"
+				onSubmit={handleSubmit(onSubmit)}
+			>
+				<h5 className="text-xl font-medium text-gray-900 dark:text-white">
+					Sign in to our platform
+				</h5>
+				{loginFormItems.map((item: FormItemType) => (
+					<div key={item.name}>
+						<label
+							className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+							htmlFor={item.name}
 						>
-							Sign In
-						</button>
-						<Link
-							className="inline-block align-baseline font-semibold text-sm text-blue-500 hover:text-blue-800"
-							href="/sign-up"
-						>
-							Sign Up
-						</Link>
+							{item.label}
+						</label>
+						<input
+							{...register(item.name as keyof typeof register)}
+							type={item.type}
+							name={item.name}
+							id={item.name}
+							className={`bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 focus-visible:outline-none ${
+								errors[item.name as keyof typeof errors]
+									? 'border-red-500'
+									: 'border-gray-300'
+							}`}
+							placeholder={item.label}
+						/>
+
+						{errors[item.name as keyof typeof errors] && (
+							<p className="text-red-500 text-xs italic">
+								{errors[item.name as keyof typeof errors]?.message}
+							</p>
+						)}
 					</div>
+				))}
+				<button
+					type="submit"
+					className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+				>
+					Login to your account
+				</button>
+				<div className="text-sm font-medium text-gray-500 dark:text-gray-300 flex gap-1 justify-center">
+					Not registered?
+					<Link
+						href={Routes.SIGN_UP}
+						className="text-blue-700 hover:underline dark:text-blue-500"
+					>
+						Create account
+					</Link>
 				</div>
 			</form>
 		</AuthFormWrapper>
