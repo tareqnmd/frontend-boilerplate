@@ -3,3 +3,6 @@ export type PostType = {
 	body: string;
 	title: string;
 };
+
+export type PostsType = PostType[];
+
