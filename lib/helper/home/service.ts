@@ -1,6 +1,6 @@
 import axiosInstance from '../../utils/axios';
 
-export const getHomeData = async () => {
-	const response = await axiosInstance('/photos');
+export const getHomeData = async (url: string) => {
+	const response = await axiosInstance(url);
 	return response.data;
 };
