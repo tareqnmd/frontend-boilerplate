@@ -10,9 +10,14 @@ const PostCard = ({
 			key={post.id}
 			className="post-card bg-white shadow-md rounded-lg p-4 max-w-sm"
 		>
-			<h1 className="post-title text-lg font-bold text-gray-800 truncate">
-				{post.title}
-			</h1>
+			<div className="post-title truncate flex justify-between gap-4">
+				<h1 className="truncate text-lg font-bold text-gray-800">
+					{post.title}
+				</h1>
+				<button className="bg-gray-600 rounded-md text-white px-2 py-1">
+					Copy
+				</button>
+			</div>
 			<p className="post-body text-gray-600 mt-2">
 				{showMinimumDescription(post.body)}
 			</p>
