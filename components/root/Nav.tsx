@@ -1,3 +1,4 @@
+import routes from '@/lib/utils/routes';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -12,9 +13,14 @@ const Nav = () => {
 					height={40}
 				/>
 				<div className="items-center flex gap-4">
-					<Link href="/">Home</Link>
-					<Link href="/blogs">Blogs</Link>
-					<Link href="/sign-in">Sign In</Link>
+					{routes.map((route) => (
+						<Link
+							href={route.link}
+							key={route.link}
+						>
+							{route.label}
+						</Link>
+					))}
 				</div>
 			</div>
 		</div>
